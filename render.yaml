@@ -1,0 +1,11 @@
+# render.yaml
+
+services:
+  - type: web
+    name: plant-disease-classifier
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      mkdir -p app/trained_model
+      gdown --id 15r8DAGYrdnmfACohPlPMIflXYUzeQB4X -O app/trained_model/plant_disease_prediction_model.h5
+    startCommand: streamlit run app/main.py

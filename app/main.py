@@ -4,28 +4,16 @@ from PIL import Image
 import numpy as np
 import tensorflow as tf
 import streamlit as st
-import subprocess
 
 # Define model path and working directory
 working_dir = os.path.dirname(os.path.abspath(__file__))
 model_dir = os.path.join(working_dir, "trained_model")
 model_path = os.path.join(model_dir, "plant_disease_prediction_model.h5")
-model_drive_id = "15r8DAGYrdnmfACohPlPMIflXYUzeQB4X"  # your model ID
 
-# Ensure model directory exists
-os.makedirs(model_dir, exist_ok=True)
-
-# Try loading the model; if missing, download from Google Drive
+# Check if model file exists
 if not os.path.exists(model_path):
-    st.warning("Model file not found. Downloading from Google Drive...")
-    try:
-        subprocess.run([
-            "gdown", "--id", model_drive_id, "-O", model_path
-        ], check=True)
-        st.success("Model downloaded successfully.")
-    except subprocess.CalledProcessError:
-        st.error("Failed to download model from Google Drive.")
-        st.stop()
+    st.error("Model file not found. Please ensure it is present in the trained_model directory.")
+    st.stop()
 
 # Load the pre-trained model
 model = tf.keras.models.load_model(model_path)
