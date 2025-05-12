@@ -17,3 +17,4 @@ EXPOSE 8501
 
 ENTRYPOINT ["streamlit", "run"]
 CMD ["app/main.py"]
+    
