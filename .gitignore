@@ -11,3 +11,4 @@ __pycache__/
 .vscode/
 .idea/
 root/.streamlit/
+app/trained_model/*.h5
