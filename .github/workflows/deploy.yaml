@@ -1,0 +1,32 @@
+name: Deploy Streamlit App
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install -r app/requirements.txt
+
+      - name: Download model from Google Drive
+        run: python app/download_model.py
+
+      - name: Verify model exists
+        run: ls -lh app/trained_model/
+
+      # Optional: run tests or streamlit (commented for now)
+      # - name: Run Streamlit App
+      #   run: streamlit run app/app.py
