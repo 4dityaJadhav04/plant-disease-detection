@@ -14,7 +14,7 @@ model_path = os.path.join(model_dir, "plant_disease_prediction_model.h5")
 # Check if model file exists, if not, download it
 if not os.path.exists(model_path):
     st.info("Model not found locally. Downloading...")
-    gdown.download("https://drive.google.com/uc?id=15r8DAGYrdnmfACohPlPMIflXYUzeQB4X", model_path, quiet=False)  # Provide your model ID here
+    gdown.download("https://drive.google.com/uc?id=15r8DAGYrdnmfACohPlPMIflXYUzeQB4X", model_path, quiet=False)  
     st.success("Model downloaded successfully!")
 
 # Load the pre-trained model
